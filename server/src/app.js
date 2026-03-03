@@ -1,0 +1,18 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.app = void 0;
+var express_1 = require("express");
+var cors_1 = require("cors");
+var db_1 = require("./config/db");
+var auth_routes_1 = require("./routes/auth.routes");
+var product_routes_1 = require("./routes/product.routes");
+var order_routes_1 = require("./routes/order.routes");
+var checkout_routes_1 = require("./routes/checkout.routes");
+exports.app = (0, express_1.default)();
+exports.app.use((0, cors_1.default)());
+exports.app.use(express_1.default.json());
+(0, db_1.connectDB)();
+exports.app.use("/api/auth", auth_routes_1.default);
+exports.app.use("/api/products", product_routes_1.default);
+exports.app.use("/api/orders", order_routes_1.default);
+exports.app.use("/api/checkout", checkout_routes_1.default);
